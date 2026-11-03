@@ -1,0 +1,5 @@
+unit: model_evaluation
+bindings:
+  - {framework: scikit-learn, mechanism: "classification_report and confusion_matrix", must_appear_in_target: true}
+runtime_config:
+  - {name: held_out_test_set, value: "Goddess_Split/test", must_appear_in_target: true}

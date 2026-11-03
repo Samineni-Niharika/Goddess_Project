@@ -1,0 +1,1 @@
+{'reco_thr': 0.95, 'centroid_thr': 0.8000000000000002, 'accepted_count': 12, 'material_acc': np.float64(1.0), 'goddess_acc': np.float64(1.0)}

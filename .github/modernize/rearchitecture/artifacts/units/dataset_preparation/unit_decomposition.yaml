@@ -1,0 +1,5 @@
+unit: dataset_preparation
+commit: false
+candidate_splits:
+  - {name: "dataset validation", drivers: ["separate lifecycle"], rationale: "checking images does not mutate the dataset"}
+  - {name: "resize/split generation", drivers: ["side-effect boundary"], rationale: "generated files and sampling policy are distinct concerns"}

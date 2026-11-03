@@ -1,0 +1,6 @@
+unit: calibration_and_ood
+bindings:
+  - {framework: NumPy/SciPy/scikit-learn, mechanism: "softmax, cosine similarity, grid search", must_appear_in_target: true}
+runtime_config:
+  - {name: temperatures, value: "goddess=1.0, material=1.2", must_appear_in_target: true}
+  - {name: acceptance thresholds, value: "confidence grid 0.30..0.95; centroid grid 0.60..0.90", must_appear_in_target: true}

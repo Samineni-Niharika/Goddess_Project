@@ -1,0 +1,11 @@
+unit: cli_inference
+source_loc: predict_new_images.py:190
+side_effects:
+  - {action: "read and sort images from an input directory", must_preserve: true}
+  - {action: "print predictions and confidence values", must_preserve: true}
+branches:
+  - {condition: "directory contains no supported images", behavior: "print error and exit", must_preserve: true}
+  - {condition: "confidence or centroid threshold fails", behavior: "mark image not recognized", must_preserve: true}
+error_paths:
+  - {condition: "individual image cannot open", contract: "report file-specific failure", must_preserve: true}
+concurrency: {model: "sequential batch inference", tx_boundary: null}

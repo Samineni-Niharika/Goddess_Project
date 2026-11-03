@@ -1,0 +1,5 @@
+unit: calibration_and_ood
+commit: false
+candidate_splits:
+  - {name: "temperature calibration", drivers: ["algorithm boundary"], rationale: "logit calibration is distinct from acceptance policy"}
+  - {name: "centroid OOD gate", drivers: ["semantic boundary"], rationale: "feature similarity rejects unrelated images"}

@@ -1,0 +1,27 @@
+shared_modules:
+  - source_loc: app.py:22
+    kind: shared_taxonomy
+    used_by_units: [streamlit_inference, dataset_preparation, model_training, model_evaluation, cli_inference]
+    fields:
+      - {name: GODDESSES, type: "ordered list[str]"}
+      - {name: MATERIALS, type: "ordered list[str]"}
+    split_candidate: "centralize labels and index mappings"
+    migration_strategy: "preserve exact ordering and checkpoint compatibility"
+  - source_loc: app.py:71
+    kind: shared_preprocessing
+    used_by_units: [streamlit_inference, model_training, cli_inference, calibration_and_ood]
+    fields:
+      - {name: IMAGE_SIZE, type: int}
+      - {name: normalization_mean, type: "list[float]"}
+      - {name: normalization_std, type: "list[float]"}
+    split_candidate: "centralize inference and validation transform"
+    migration_strategy: "preserve 224x224 resize and ImageNet normalization"
+  - source_loc: app.py:86
+    kind: shared_model_definition
+    used_by_units: [streamlit_inference, model_training, model_evaluation, calibration_and_ood, cli_inference]
+    fields:
+      - {name: resnet18_backbone, type: "torchvision.models.ResNet"}
+      - {name: goddess_classifier, type: "nn.Linear(512, 6)"}
+      - {name: material_classifier, type: "nn.Linear(512, 6)"}
+    split_candidate: "extract model factory"
+    migration_strategy: "preserve state_dict key names and head dimensions"

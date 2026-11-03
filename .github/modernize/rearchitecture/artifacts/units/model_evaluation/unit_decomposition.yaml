@@ -1,0 +1,5 @@
+unit: model_evaluation
+commit: false
+candidate_splits:
+  - {name: "metric evaluation", drivers: ["algorithm boundary"], rationale: "aggregate accuracy is independent from error inspection"}
+  - {name: "error analysis", drivers: ["output boundary"], rationale: "misclassification diagnostics produce separate artifacts"}

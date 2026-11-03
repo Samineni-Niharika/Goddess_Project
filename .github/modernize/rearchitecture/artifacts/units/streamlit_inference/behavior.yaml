@@ -1,0 +1,12 @@
+unit: streamlit_inference
+source_loc: app.py:198
+side_effects:
+  - {action: "load model and cache resource", must_preserve: true}
+  - {action: "render uploaded image and prediction results", must_preserve: true}
+branches:
+  - {condition: "no files uploaded", behavior: "show upload guidance", must_preserve: true}
+  - {condition: "confidence or centroid threshold fails", behavior: "return Image Not Recognized", must_preserve: true}
+error_paths:
+  - {condition: "checkpoint load fails", contract: "show error and stop page", must_preserve: true}
+  - {condition: "individual image fails", contract: "show file-specific error", must_preserve: true}
+concurrency: {model: "single Streamlit session; cached shared resource", tx_boundary: null}

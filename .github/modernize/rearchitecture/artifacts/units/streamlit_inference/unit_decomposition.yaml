@@ -1,0 +1,5 @@
+unit: streamlit_inference
+commit: false
+candidate_splits:
+  - {name: "model loading", drivers: ["shared concern"], rationale: "checkpoint construction and caching are separable from UI"}
+  - {name: "prediction presentation", drivers: ["presentation boundary"], rationale: "rendering can be tested independently from inference"}

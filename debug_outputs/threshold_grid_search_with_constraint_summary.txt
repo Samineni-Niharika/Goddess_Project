@@ -1,0 +1,10 @@
+Best thresholds under constraint: {'reco_thr': 0.7, 'centroid_thr': 0.6, 'accepted_count': 68, 'accepted_rate': 0.5714285714285714, 'material_acc': np.float64(0.9117647058823529), 'goddess_acc': np.float64(0.9264705882352942)}
+Test size: 121
+Test accepted: 79
+Test rejected: 42
+Material acc on accepted: 0.9240506329113924
+Goddess acc on accepted: 0.9620253164556962
+OOD total: 12
+OOD accepted: 8
+False accept rate (%): 66.66666666666666
+OOD accepted list: ['Screenshot 2026-08-26 231904.png', 'Screenshot 2026-08-26 231958.png', 'Screenshot 2026-08-26 232034.png', 'Screenshot 2026-08-26 232058.png', 'Screenshot 2026-08-26 232207.png', 'Screenshot 2026-08-26 232250.png', 'Screenshot 2026-08-26 232318.png', 'Screenshot 2026-08-26 232419.png']

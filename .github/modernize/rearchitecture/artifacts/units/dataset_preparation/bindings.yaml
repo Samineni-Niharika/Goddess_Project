@@ -1,0 +1,6 @@
+unit: dataset_preparation
+bindings:
+  - {framework: Python stdlib/Pillow, mechanism: "os.walk, shutil.copy2, Image.resize", must_appear_in_target: true}
+runtime_config:
+  - {name: split ratios, value: "70% train, 15% validation, remainder test", must_appear_in_target: true}
+  - {name: random seed, value: 42, must_appear_in_target: true}

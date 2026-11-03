@@ -1,0 +1,5 @@
+unit: model_training
+commit: false
+candidate_splits:
+  - {name: "dataset loader", drivers: ["shared concern"], rationale: "label discovery and image loading are reusable"}
+  - {name: "training loop", drivers: ["algorithm boundary"], rationale: "optimization can evolve independently of model definition"}

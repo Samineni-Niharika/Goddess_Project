@@ -1,0 +1,56 @@
+units:
+  - name: streamlit_inference
+    source_anchors:
+      - app.py:1
+    exported_signature: "Streamlit page accepting multiple jpg/jpeg/png uploads and displaying goddess/material predictions"
+    dynamic_entrypoints: ["Streamlit script execution"]
+    depends_on: ["model_loading", "feature_centroid_check"]
+    shared_refs: ["label_taxonomy", "image_transform", "resnet_multitask_model"]
+  - name: dataset_preparation
+    source_anchors:
+      - resize_dataset.py:1
+      - split_dataset.py:1
+      - prepare_new_test.py:1
+      - check_dataset.py:1
+    exported_signature: "Filesystem transformations and validation for image datasets"
+    dynamic_entrypoints: ["CLI script execution"]
+    depends_on: ["label_taxonomy"]
+    shared_refs: ["label_taxonomy", "dataset_layout"]
+  - name: model_training
+    source_anchors:
+      - train_model.py:1
+      - train_model_v2.py:1
+      - train_model_v3.py:1
+      - model4_training.py:1
+    exported_signature: "Offline training of a ResNet18 shared backbone with two six-class heads"
+    dynamic_entrypoints: ["CLI script execution"]
+    depends_on: ["dataset_preparation"]
+    shared_refs: ["label_taxonomy", "image_transform", "resnet_multitask_model"]
+  - name: model_evaluation
+    source_anchors:
+      - evaluate_model.py:1
+      - evaluate_model3.py:1
+      - error_analysis.py:1
+      - final_project_results.py:1
+    exported_signature: "Offline test metrics, confusion matrices, error analysis, and result reporting"
+    dynamic_entrypoints: ["CLI script execution"]
+    depends_on: ["model_training"]
+    shared_refs: ["label_taxonomy", "resnet_multitask_model"]
+  - name: calibration_and_ood
+    source_anchors:
+      - debug_ood_and_calibrate.py:1
+      - run_threshold_grid_search.py:1
+      - run_threshold_grid_search_with_constraint.py:1
+      - analyze_debug_outputs.py:1
+    exported_signature: "Calibration and threshold selection for confidence and feature-similarity acceptance"
+    dynamic_entrypoints: ["CLI script execution"]
+    depends_on: ["model_evaluation"]
+    shared_refs: ["resnet_multitask_model", "calibration_parameters"]
+  - name: cli_inference
+    source_anchors:
+      - predict_single_image.py:1
+      - predict_new_images.py:1
+    exported_signature: "Single-image and directory-based prediction using a saved checkpoint"
+    dynamic_entrypoints: ["CLI script execution", "interactive input in predict_single_image.py"]
+    depends_on: ["model_training", "calibration_and_ood"]
+    shared_refs: ["label_taxonomy", "image_transform", "resnet_multitask_model", "calibration_parameters"]

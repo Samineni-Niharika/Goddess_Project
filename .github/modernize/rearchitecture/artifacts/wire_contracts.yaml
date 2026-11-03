@@ -1,0 +1,16 @@
+contracts:
+  - source_loc: app.py:188
+    interface: "Streamlit file uploader"
+    stability: frozen
+    target_contract: "Accept one or more jpg, jpeg, or png files and display one result block per file"
+    semantic_divergence: "Invalid image processing is surfaced per uploaded file; model-load failure stops the page"
+  - source_loc: predict_single_image.py:142
+    interface: "CLI path input"
+    stability: frozen
+    target_contract: "Read a user-provided image path and print goddess, material, and confidence results"
+    semantic_divergence: "Missing/unreadable paths terminate with an explicit error"
+  - source_loc: model_training.py
+    interface: "PyTorch checkpoint"
+    stability: frozen
+    target_contract: "Checkpoint loads into ResNet18 with Identity fc and two six-class linear heads"
+    semantic_divergence: "Checkpoint architecture and label ordering are inseparable from compatibility"

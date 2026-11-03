@@ -1,0 +1,5 @@
+unit: cli_inference
+commit: false
+candidate_splits:
+  - {name: "single-image inference", drivers: ["entrypoint boundary"], rationale: "interactive path input differs from directory batch mode"}
+  - {name: "result formatting", drivers: ["presentation boundary"], rationale: "printing can be separated from prediction computation"}

@@ -1,0 +1,9 @@
+strategy: "documentation_only"
+user_intent:
+  cleanup_required: false
+  acceptance_criteria: "Explain the existing architecture, technologies, and algorithms."
+must_rewrite: []
+copy_as_is: ["All existing Python source and checkpoints remain unchanged."]
+legacy_allowed_to_remain: ["All repository files; no migration was requested."]
+defer_cleanup: ["Duplicated label lists and model construction helpers can be refactored separately."]
+source_anchors_are_not_rewrite_targets: true

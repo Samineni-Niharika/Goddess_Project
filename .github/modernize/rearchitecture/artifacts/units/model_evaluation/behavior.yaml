@@ -1,0 +1,10 @@
+unit: model_evaluation
+source_loc: evaluate_model3.py:400
+side_effects:
+  - {action: "compute goddess and material accuracy", must_preserve: true}
+  - {action: "write confusion matrices and reports", must_preserve: true}
+branches:
+  - {condition: "prediction differs from label", behavior: "record error for analysis", must_preserve: true}
+error_paths:
+  - {condition: "checkpoint incompatible", contract: "surface model loading error", must_preserve: true}
+concurrency: {model: "single evaluation process with no parameter updates", tx_boundary: null}

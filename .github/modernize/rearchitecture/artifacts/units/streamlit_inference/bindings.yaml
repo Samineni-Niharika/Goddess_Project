@@ -1,0 +1,6 @@
+unit: streamlit_inference
+bindings:
+  - {framework: Streamlit, mechanism: "script execution and st.file_uploader", must_appear_in_target: true}
+runtime_config:
+  - {name: MODEL_PATH, value: "Goddess_Split/goddess_material_resnet18_v3_best.pth", must_appear_in_target: true}
+  - {name: device, value: "CUDA if available else CPU", must_appear_in_target: true}

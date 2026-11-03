@@ -1,0 +1,8 @@
+unit: model_training
+bindings:
+  - {framework: PyTorch/torchvision, mechanism: "ResNet18, DataLoader, autograd", must_appear_in_target: true}
+runtime_config:
+  - {name: input_size, value: 224, must_appear_in_target: true}
+  - {name: batch_size, value: 16, must_appear_in_target: true}
+  - {name: optimizer, value: "Adam lr=0.0001", must_appear_in_target: true}
+  - {name: scheduler, value: "ReduceLROnPlateau factor=0.5 patience=2", must_appear_in_target: true}

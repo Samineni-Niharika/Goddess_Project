@@ -1,0 +1,11 @@
+unit: model_training
+source_loc: train_model_v3.py:443
+side_effects:
+  - {action: "update model parameters with Adam", must_preserve: true}
+  - {action: "save best state_dict checkpoint", must_preserve: true}
+branches:
+  - {condition: "validation combined score improves", behavior: "save checkpoint and reset patience", must_preserve: true}
+  - {condition: "no improvement for five epochs", behavior: "early stop", must_preserve: true}
+error_paths:
+  - {condition: "empty train/validation/test dataset", contract: "print error and exit", must_preserve: true}
+concurrency: {model: "batched PyTorch training; no application-level concurrency", tx_boundary: null}

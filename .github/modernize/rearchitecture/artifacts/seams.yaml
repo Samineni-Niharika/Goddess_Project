@@ -1,0 +1,11 @@
+seams:
+  - source: inferred
+    source_loc: app.py:107
+    frozen_side: "saved PyTorch state_dict checkpoint"
+    frozen_side_rule: "Do not change backbone/head names, dimensions, or label ordering without retraining and revalidating."
+    protocol_shift: "filesystem checkpoint to instantiated PyTorch model"
+    bridge_points:
+      - mapping_rule: "Instantiate ResNet18, replace fc with Identity, add two six-output Linear heads, then load_state_dict with map_location=device."
+        edge_cases: "CPU must load CUDA-trained checkpoints through map_location; missing/incompatible keys must surface."
+        idempotency_retry: "Repeated loads produce the same eval-mode model."
+        fallback: "Stop inference and display/report the model-loading error."

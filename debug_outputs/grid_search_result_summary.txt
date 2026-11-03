@@ -1,0 +1,10 @@
+Best thresholds: {'reco_thr': 0.95, 'centroid_thr': 0.8000000000000002, 'accepted_count': 12, 'material_acc': np.float64(1.0), 'goddess_acc': np.float64(1.0)}
+Test size: 121
+Test accepted: 12
+Test rejected: 109
+Material acc on accepted: 0.9166666666666666
+Goddess acc on accepted: 1.0
+OOD total: 12
+OOD accepted: 1
+False accept rate (%): 8.333333333333332
+OOD accepted list: ['Screenshot 2026-08-26 232419.png']

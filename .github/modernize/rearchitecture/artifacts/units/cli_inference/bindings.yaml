@@ -1,0 +1,6 @@
+unit: cli_inference
+bindings:
+  - {framework: Python CLI, mechanism: "input() and filesystem directory scan", must_appear_in_target: true}
+runtime_config:
+  - {name: checkpoint, value: "goddess_material_resnet18_v3_best.pth", must_appear_in_target: true}
+  - {name: image_extensions, value: "jpg/jpeg/png", must_appear_in_target: true}

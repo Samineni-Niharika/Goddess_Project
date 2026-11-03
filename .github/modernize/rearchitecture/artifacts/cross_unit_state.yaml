@@ -1,0 +1,13 @@
+flows:
+  - source_loc: app.py:12
+    producer: calibration_and_ood
+    consumer: streamlit_inference
+    state: "checkpoint plus selected temperatures and thresholds"
+    pairing: matched
+    must_preserve: "v3 checkpoint; temperatures 1.0/1.2; recognition 0.70; centroid 0.60"
+  - source_loc: split_dataset.py:5
+    producer: dataset_preparation
+    consumer: model_training
+    state: "Goddess_Split train/validation/test directory tree"
+    pairing: matched
+    must_preserve: "class names and nested material folder layout"

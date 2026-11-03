@@ -1,0 +1,10 @@
+unit: calibration_and_ood
+source_loc: run_threshold_grid_search_with_constraint.py:116
+side_effects:
+  - {action: "write threshold grid CSV and summaries", must_preserve: true}
+branches:
+  - {condition: "accepted validation rate >= 50%", behavior: "consider threshold candidate", must_preserve: true}
+  - {condition: "no threshold meets constraint", behavior: "write results and exit", must_preserve: true}
+error_paths:
+  - {condition: "empty material centroid bucket", contract: "use zero centroid", must_preserve: true}
+concurrency: {model: "single-process offline calibration", tx_boundary: null}

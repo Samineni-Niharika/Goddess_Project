@@ -1,0 +1,11 @@
+unit: dataset_preparation
+source_loc: split_dataset.py:43
+side_effects:
+  - {action: "copy images into generated split tree", must_preserve: true}
+  - {action: "resize and save RGB JPEG images", must_preserve: true}
+branches:
+  - {condition: "missing source folder", behavior: "print MISSING and continue", must_preserve: true}
+  - {condition: "split would consume all images before test", behavior: "reserve at least one validation/test image", must_preserve: true}
+error_paths:
+  - {condition: "image conversion fails", contract: "count failure and print path/reason", must_preserve: true}
+concurrency: {model: "single-process filesystem operations", tx_boundary: null}
